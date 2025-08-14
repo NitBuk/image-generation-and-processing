@@ -1,4 +1,4 @@
-# AI Image Processing and Editing Tool 🔨 📸 🌇
+# AI Image Processing and Editing Tool
 
 This project is an interactive, command-line-based image processing and editing tool powered by artificial intelligence. The tool provides users with a variety of options to manipulate and transform images in various ways.
 
