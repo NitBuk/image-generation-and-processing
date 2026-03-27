@@ -40,15 +40,11 @@ class ImageEditorApp(tk.Tk):
         panel = tk.Frame(self, bg="#f3f0ea")
         panel.pack(side=tk.LEFT, fill=tk.Y, padx=16, pady=16)
 
-        tk.Button(panel, text="Load image", command=self.load_local_image).pack(
-            fill=tk.X, pady=4
-        )
+        tk.Button(panel, text="Load image", command=self.load_local_image).pack(fill=tk.X, pady=4)
         tk.Button(panel, text="Generate image", command=self.generate_with_ai).pack(
             fill=tk.X, pady=4
         )
-        tk.Button(panel, text="Grayscale", command=self.apply_grayscale).pack(
-            fill=tk.X, pady=4
-        )
+        tk.Button(panel, text="Grayscale", command=self.apply_grayscale).pack(fill=tk.X, pady=4)
         tk.Button(panel, text="Blur", command=self.apply_blur).pack(fill=tk.X, pady=4)
         tk.Button(panel, text="Resize", command=self.apply_resize).pack(fill=tk.X, pady=4)
         tk.Button(panel, text="Rotate left", command=lambda: self.apply_rotate("L")).pack(
@@ -57,17 +53,12 @@ class ImageEditorApp(tk.Tk):
         tk.Button(panel, text="Rotate right", command=lambda: self.apply_rotate("R")).pack(
             fill=tk.X, pady=4
         )
-        tk.Button(panel, text="Detect edges", command=self.apply_edges).pack(
-            fill=tk.X, pady=4
-        )
-        tk.Button(panel, text="Quantize", command=self.apply_quantize).pack(
-            fill=tk.X, pady=4
-        )
+        tk.Button(panel, text="Detect edges", command=self.apply_edges).pack(fill=tk.X, pady=4)
+        tk.Button(panel, text="Quantize", command=self.apply_quantize).pack(fill=tk.X, pady=4)
         tk.Button(panel, text="Save as...", command=self.save_as).pack(fill=tk.X, pady=4)
 
         guidance = (
-            "This GUI uses the same deterministic core as the CLI.\n"
-            "AI generation is optional."
+            "This GUI uses the same deterministic core as the CLI.\nAI generation is optional."
         )
         tk.Label(
             panel,

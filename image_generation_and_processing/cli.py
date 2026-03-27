@@ -60,9 +60,7 @@ def _float_type(*, minimum: float = 0.0):
 
 def _load_initial_image() -> Image:
     while True:
-        choice = _prompt(
-            "Enter 1 to generate an image with AI or 2 to load a local image: "
-        )
+        choice = _prompt("Enter 1 to generate an image with AI or 2 to load a local image: ")
         if choice == "1":
             prompt = _prompt("Describe the image you want to generate: ")
             result = generate_image(prompt)
@@ -80,9 +78,7 @@ def _apply_to_channels(
     transform: Callable[[list[list[int]]], list[list[int]]],
 ) -> Image:
     if is_color_image(image):
-        channels = [
-            transform(channel) for channel in separate_channels(image)
-        ]  # type: ignore[arg-type]
+        channels = [transform(channel) for channel in separate_channels(image)]  # type: ignore[arg-type]
         return combine_channels(channels)
     return transform(image)
 

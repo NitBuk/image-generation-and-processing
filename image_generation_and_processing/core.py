@@ -48,10 +48,7 @@ def rgb_to_grayscale(image: ColorImage) -> GrayImage:
     """Convert an RGB image to grayscale using standard luminance weights."""
 
     return [
-        [
-            round(pixel[0] * 0.299 + pixel[1] * 0.587 + pixel[2] * 0.114)
-            for pixel in row
-        ]
+        [round(pixel[0] * 0.299 + pixel[1] * 0.587 + pixel[2] * 0.114) for pixel in row]
         for row in image
     ]
 
@@ -99,9 +96,9 @@ def apply_kernel(image: GrayImage, kernel: Kernel) -> GrayImage:
                 for kernel_column, image_column in enumerate(
                     range(column_index - radius, column_index + radius + 1)
                 ):
-                    total += _sample(image, image_row, image_column) * kernel[kernel_row][
-                        kernel_column
-                    ]
+                    total += (
+                        _sample(image, image_row, image_column) * kernel[kernel_row][kernel_column]
+                    )
             row.append(_clamp(round(total), 0, 255))
         output.append(row)
     return output
@@ -200,12 +197,7 @@ def quantize_gray(image: GrayImage, levels: int) -> GrayImage:
 
     output: GrayImage = []
     for row in image:
-        output.append(
-            [
-                round(floor(pixel * (levels / 256)) * 255 / (levels - 1))
-                for pixel in row
-            ]
-        )
+        output.append([round(floor(pixel * (levels / 256)) * 255 / (levels - 1)) for pixel in row])
     return output
 
 
