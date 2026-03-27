@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from argparse import Namespace
 import importlib.util
-from pathlib import Path
 import tempfile
 import unittest
+from argparse import Namespace
+from pathlib import Path
 
 from image_generation_and_processing.cli import (
     build_parser,

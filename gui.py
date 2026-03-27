@@ -1,5 +1,7 @@
 """Compatibility wrapper for the Tkinter GUI."""
 
+from __future__ import annotations
+
 from image_generation_and_processing.gui import main
 
 
