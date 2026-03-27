@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "image-generation-and-processing"
+version = "0.1.0"
+description = "A small Python image editing toolkit with optional AI image generation."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "Pillow>=10.0.0",
+]
+
+[project.optional-dependencies]
+ai = [
+  "openai>=1.0.0",
+]
+dev = [
+  "ruff>=0.6.0",
+]
+
+[project.scripts]
+image-toolkit = "image_generation_and_processing.cli:main"
+image-toolkit-gui = "image_generation_and_processing.gui:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["image_generation_and_processing*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
