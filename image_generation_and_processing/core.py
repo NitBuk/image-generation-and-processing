@@ -61,6 +61,8 @@ def box_blur_kernel(size: int) -> Kernel:
 
     if size <= 0:
         raise ValueError("Kernel size must be a positive integer.")
+    if size % 2 == 0:
+        raise ValueError("Kernel size must be odd.")
     weight = 1 / (size * size)
     return [[weight for _ in range(size)] for _ in range(size)]
 
@@ -82,6 +84,8 @@ def apply_kernel(image: GrayImage, kernel: Kernel) -> GrayImage:
         raise ValueError("Image must contain at least one pixel.")
     if not kernel or len(kernel) != len(kernel[0]):
         raise ValueError("Kernel must be a non-empty square matrix.")
+    if len(kernel) % 2 == 0:
+        raise ValueError("Kernel dimensions must be odd.")
 
     radius = len(kernel) // 2
     output: GrayImage = []

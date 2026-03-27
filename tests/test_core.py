@@ -32,6 +32,10 @@ class CoreImageTransformsTest(unittest.TestCase):
 
         self.assertAlmostEqual(sum(sum(row) for row in kernel), 1.0)
 
+    def test_box_blur_kernel_rejects_even_sizes(self) -> None:
+        with self.assertRaises(ValueError):
+            box_blur_kernel(2)
+
     def test_apply_kernel_with_identity_matrix_returns_original(self) -> None:
         image = [[10, 20], [30, 40]]
         kernel = [

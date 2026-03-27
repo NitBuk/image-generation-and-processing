@@ -101,6 +101,16 @@ class ImageEditorApp(tk.Tk):
             return
         self._preview.configure(image=self._photo, text="")
 
+    @staticmethod
+    def _ask_odd_integer(title: str, prompt: str) -> int | None:
+        while True:
+            value = simpledialog.askinteger(title, prompt, minvalue=1)
+            if value is None:
+                return None
+            if value % 2 == 1:
+                return value
+            messagebox.showerror(title, "Please enter an odd integer.")
+
     def load_local_image(self) -> None:
         path = filedialog.askopenfilename(
             title="Choose an image", filetypes=[("Image files", "*.png *.jpg *.jpeg *.bmp *.gif")]
@@ -130,8 +140,8 @@ class ImageEditorApp(tk.Tk):
     def apply_blur(self) -> None:
         if not self._ensure_image():
             return
-        size = simpledialog.askinteger("Blur", "Enter an odd blur kernel size:", minvalue=1)
-        if not size:
+        size = self._ask_odd_integer("Blur", "Enter an odd blur kernel size:")
+        if size is None:
             return
         kernel = box_blur_kernel(size)
         if is_color_image(self._image):
@@ -162,8 +172,8 @@ class ImageEditorApp(tk.Tk):
     def apply_edges(self) -> None:
         if not self._ensure_image():
             return
-        blur_size = simpledialog.askinteger("Edges", "Blur kernel size:", minvalue=1)
-        block_size = simpledialog.askinteger("Edges", "Local average block size:", minvalue=1)
+        blur_size = self._ask_odd_integer("Edges", "Blur kernel size:")
+        block_size = self._ask_odd_integer("Edges", "Local average block size:")
         threshold = simpledialog.askfloat("Edges", "Threshold:", minvalue=0.0)
         if blur_size is None or block_size is None or threshold is None:
             return
